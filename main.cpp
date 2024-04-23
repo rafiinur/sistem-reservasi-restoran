@@ -1,8 +1,5 @@
 // Menu Utama
 
-
-// Menu Utama
-
 #include <iostream>
 
 using namespace std;
