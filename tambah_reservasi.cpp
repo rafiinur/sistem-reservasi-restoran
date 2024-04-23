@@ -2,8 +2,11 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <filesystem> 
 
 using namespace std;
+namespace fs = filesystem;
+
 
 struct reservasi
 {
@@ -17,6 +20,10 @@ struct reservasi
 reservasi *head;
 reservasi *tail;
 
+bool fileExists(const string& filename) {
+    return fs::exists(filename);
+}
+
 bool isEmpty()
 {
     if(head == NULL)
@@ -28,17 +35,55 @@ bool isEmpty()
 
 bool isFull(string tanggal, string jam)
 {
-    reservasi *temp = head;
-    while (temp != NULL)
+    ifstream file("reservasi.csv");
+    string line;
+
+    while (getline(file, line))
     {
-        if (temp->tanggal == tanggal && temp->jam == jam)
+        stringstream ss(line);
+        string nama, tgl, jamm;
+        int jumlah;
+
+        getline(ss, nama, ',');
+        ss >> jumlah;
+        ss.ignore();
+        getline(ss, tgl, ',');
+        getline(ss, jamm, ',');
+
+        if (tgl == tanggal && jamm == jam)
         {
-            return true;
+            file.close();
+            return true; 
         }
-        temp = temp->next;
     }
-    return false;
+
+    file.close();
+    return false; 
 }
+
+void buat_file(string nama, int jumlah_orang, string tanggal, string jam)
+{
+
+    if (!fileExists("reservasi.csv")) {
+        ofstream createFile("reservasi.csv");
+        if (createFile.is_open()) {
+            createFile << "Nama,Jumlah Orang,Tanggal,Jam\n";
+            createFile.close();
+        } else {
+            cout << "Unable to create file.\n";
+
+        }
+    }
+
+    ofstream file("reservasi.csv", ios::app);
+    if (file.is_open()) {
+        file << nama << "," << jumlah_orang << "," << tanggal << "," << jam << "\n";
+        file.close();
+    } else {
+        cout << "Unable to open file.\n";
+    }
+}
+
 
 void tambah_reservasi(string nama, int jumlah_orang, string tanggal, string jam)
 {
@@ -66,21 +111,24 @@ void tambah_reservasi(string nama, int jumlah_orang, string tanggal, string jam)
         tail = new_reservasi;
     }
 
-    ofstream file("reservasi.csv", ios::app);
-    if (file.is_open())
-    {
-        if (file.tellp() == 0)
-        {
-            file << "Nama,Jumlah Orang,Tanggal,Jam\n";
-        }
+    buat_file(nama, jumlah_orang, tanggal, jam);
 
-        file << nama << "," << jumlah_orang << "," << tanggal << "," << jam << "\n";
-        file.close();
-    }
-    else
-    {
-        cout << "Unable to open file.\n";
-    }
+    // ofstream file("reservasi.csv", ios::app);
+    // if (file.is_open())
+    // {
+    //     if (file.tellp() == 0)
+    //     {
+    //         file << "Nama,Jumlah Orang,Tanggal,Jam\n";
+    //     }
+
+    //     file << nama << "," << jumlah_orang << "," << tanggal << "," << jam << "\n";
+    //     file.close();
+    // }
+    // else
+    // {
+    //     cout << "Unable to open file.\n";
+    // }
+
 }
 
 void daftar_reservasi()
