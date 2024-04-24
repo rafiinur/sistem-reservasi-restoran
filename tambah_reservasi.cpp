@@ -84,7 +84,6 @@ void buat_file(string nama, int jumlah_orang, string tanggal, string jam)
     }
 }
 
-
 void tambah_reservasi(string nama, int jumlah_orang, string tanggal, string jam)
 {
     if (isFull(tanggal, jam))
