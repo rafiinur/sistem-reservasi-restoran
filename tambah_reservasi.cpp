@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <filesystem> 
+#include "tambah.h"
 
 using namespace std;
 namespace fs = filesystem;
@@ -142,7 +143,7 @@ void daftar_reservasi()
     }
 }
 
-int main()
+void tambah_resv()
 {
     string nama;
     int jumlah_orang;
@@ -158,6 +159,7 @@ int main()
 
     cout << "========Buat Reservasi========" << endl;
     cout << "Masukkan Nama: ";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, nama);
     cout << "Masukkan Jumlah Orang: ";
     cin >> jumlah_orang;
@@ -172,5 +174,4 @@ int main()
     cout << "Daftar Reservasi:\n";
     daftar_reservasi();
 
-    return 0;
 }
