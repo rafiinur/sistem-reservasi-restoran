@@ -11,6 +11,7 @@ namespace fs = filesystem;
 
 struct reservasi
 {
+    int no_reservasi;
     string nama;
     int jumlah_orang;
     string tanggal;
@@ -62,30 +63,30 @@ bool isFull(string tanggal, string jam)
     return false; 
 }
 
-void buat_file(string nama, int jumlah_orang, string tanggal, string jam)
+void buat_file(int no_reservasi, string nama, int jumlah_orang, string tanggal, string jam)
 {
 
     if (!fileExists("reservasi.csv")) {
         ofstream createFile("reservasi.csv");
         if (createFile.is_open()) {
-            createFile << "Nama,Jumlah Orang,Tanggal,Jam\n";
+            createFile << "No,Nama,Jumlah Orang,Tanggal,Jam\n";
             createFile.close();
         } else {
-            cout << "Unable to create file.\n";
+            cout << "File gagal dibuat.\n";
 
         }
     }
 
     ofstream file("reservasi.csv", ios::app);
     if (file.is_open()) {
-        file << nama << "," << jumlah_orang << "," << tanggal << "," << jam << "\n";
+        file << no_reservasi << "," << nama << "," << jumlah_orang << "," << tanggal << "," << jam << "\n";
         file.close();
     } else {
-        cout << "Unable to open file.\n";
+        cout << "File gagal dibuka.\n";
     }
 }
 
-void tambah_reservasi(string nama, int jumlah_orang, string tanggal, string jam)
+void tambah_reservasi(int no_reservasi, string nama, int jumlah_orang, string tanggal, string jam)
 {
     if (isFull(tanggal, jam))
     {
@@ -94,6 +95,7 @@ void tambah_reservasi(string nama, int jumlah_orang, string tanggal, string jam)
     }
 
     reservasi *new_reservasi = new reservasi;
+    new_reservasi->no_reservasi = no_reservasi;
     new_reservasi->nama = nama;
     new_reservasi->jumlah_orang = jumlah_orang;
     new_reservasi->tanggal = tanggal;
@@ -111,27 +113,11 @@ void tambah_reservasi(string nama, int jumlah_orang, string tanggal, string jam)
         tail = new_reservasi;
     }
 
-    buat_file(nama, jumlah_orang, tanggal, jam);
-
-    // ofstream file("reservasi.csv", ios::app);
-    // if (file.is_open())
-    // {
-    //     if (file.tellp() == 0)
-    //     {
-    //         file << "Nama,Jumlah Orang,Tanggal,Jam\n";
-    //     }
-
-    //     file << nama << "," << jumlah_orang << "," << tanggal << "," << jam << "\n";
-    //     file.close();
-    // }
-    // else
-    // {
-    //     cout << "Unable to open file.\n";
-    // }
+    buat_file(no_reservasi, nama, jumlah_orang, tanggal, jam);
 
 }
 
-void daftar_reservasi()
+void lihat_reservasi()
 {
     reservasi *current = head;
     int i = 1;
@@ -143,8 +129,9 @@ void daftar_reservasi()
     }
 }
 
-void tambah_resv()
+void main()
 {
+    int no_reservasi = 1;
     string nama;
     int jumlah_orang;
     string tanggal;
@@ -158,20 +145,14 @@ void tambah_resv()
     cout << endl;
 
     cout << "========Buat Reservasi========" << endl;
-    cout << "Masukkan Nama: ";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    getline(cin, nama);
-    cout << "Masukkan Jumlah Orang: ";
-    cin >> jumlah_orang;
-    cin.ignore(); 
-    cout << "Masukkan Tanggal (YYYY-MM-DD): ";
-    getline(cin, tanggal);
-    cout << "Masukkan Jam (HH:MM): ";
-    getline(cin, jam);
+    cout << "Masukkan Nama: "; getline(cin, nama);
+    cout << "Masukkan Jumlah Orang: "; cin >> jumlah_orang; cin.ignore(); 
+    cout << "Masukkan Tanggal (YYYY-MM-DD): "; getline(cin, tanggal);
+    cout << "Masukkan Jam (HH:MM): "; getline(cin, jam);
 
-    tambah_reservasi(nama, jumlah_orang, tanggal, jam);
+    tambah_reservasi(no_reservasi, nama, jumlah_orang, tanggal, jam);
 
     cout << "Daftar Reservasi:\n";
-    daftar_reservasi();
+    lihat_reservasi();
 
 }
