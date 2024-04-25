@@ -1,25 +1,52 @@
-// Hapus reservasi
-void hapus_reservasi(int nomor_reservasi) {
-    reservasi *current = head;
-    reservasi *prev = NULL;
+#include <iostream>
+#include <string>
 
-    int i = 1;
+using namespace std;
+
+struct reservasi
+{
+    int no_reservasi;
+    string nama;
+    int jumlah_orang;
+    string tanggal;
+    string jam;
+    reservasi *next;
+    reservasi *prev;
+};
+
+reservasi *head = NULL;
+reservasi *tail = NULL;
+
+// Hapus reservasi
+void hapus_reservasi(int no_reservasi) {
+    reservasi *current = head;
+
     while (current != NULL) {
-        if (i == nomor_reservasi) {
-            if (prev != NULL) {
-                prev->next = current->next;
-            } else {
+        if (current->no_reservasi == no_reservasi) {
+            if (current == head && current == tail) {
+                // Jika ini adalah satu-satunya node dalam linked list
+                head = NULL;
+                tail = NULL;
+            } else if (current == head) {
+                // Jika ini adalah node pertama dalam linked list
                 head = current->next;
+                head->prev = NULL;
+            } else if (current == tail) {
+                // Jika ini adalah node terakhir dalam linked list
+                tail = current->prev;
+                tail->next = NULL;
+            } else {
+                // Jika ini adalah node di tengah linked list
+                current->prev->next = current->next;
+                current->next->prev = current->prev;
             }
             delete current;
-            cout << "Reservasi dengan nomor " << nomor_reservasi << " telah dihapus.\n";
+            cout << "Reservasi dengan nomor " << no_reservasi << " telah dihapus.\n";
             return;
         }
-        prev = current;
         current = current->next;
-        i++;
     }
-    cout << "Reservasi dengan nomor " << nomor_reservasi << " tidak ditemukan.\n";
+    cout << "Reservasi dengan nomor " << no_reservasi << " tidak ditemukan.\n";
 }
 
 int main()
@@ -30,8 +57,7 @@ int main()
     if (pilihan != 0)
     {
         hapus_reservasi(pilihan);
-        cout << "Daftar Reservasi setelah dihapus:\n";
-        daftar_reservasi();
+        cout << "Reservasi setelah dihapus:\n";
     }
 
     return 0;
