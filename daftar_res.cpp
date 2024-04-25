@@ -30,7 +30,7 @@ void r_w_csv()
         string nama, temp, tanggal, jam;
         int jumlah_orang;
 
-        while (file.eof()) 
+        while (!file.eof()) 
         {
             getline(file, nama, ',');
             getline(file, temp, ',');
@@ -99,13 +99,19 @@ void daftar_re ()
         jumlah_orang = atoi(temp.c_str());
         getline(file, tanggal, ',');
         getline(file, jam, '\n');
+
+        cout << "Nama :\t\t" << nama << endl;
+        cout << "Jumlah Orang :\t\t" << jumlah_orang << endl;
+        cout << "Tanggal :\t\t" << tanggal << endl;
+        cout << "Jam :\t\t" << jam << endl;
     }
 
 }
 
 int main ()
 {
-    r_w_csv();
-    out_daftar();
+    // r_w_csv();
+    // out_daftar();
+    daftar_re();
 
 }

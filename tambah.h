@@ -30,4 +30,4 @@ extern std::string jam;
 extern reservasi *next;
 extern reservasi *prev;
 
-#endif
+    #endif

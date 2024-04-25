@@ -4,6 +4,7 @@
 #include "log.h"
 #include "tambah.h"
 #include "hapus.h"
+#include "tes.h"
 
 using namespace std;
 
@@ -44,7 +45,7 @@ int main () {
             if (pilih == 1)
             {
                 // Modul daftar reservasi
-                cout << "1 pass" << endl;
+                daftar_re();
                 daftar_pilihan();
                 cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
             }
