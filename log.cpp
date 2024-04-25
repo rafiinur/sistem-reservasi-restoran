@@ -78,7 +78,6 @@ void login()
     cout << "     Login & Sign Up" << endl;
     cout << "Sistem Reservasi Restoran" << endl;
     cout << "==========================" << endl;
-    cout << endl;
 
     cout << endl;
     cout << "Silahkan Pilih | Login (1) | atau | Signup (2) |" << endl 
@@ -87,7 +86,7 @@ void login()
 
     if (pilih == 1)
     {
-        cout << "========== Login ==========" << endl;
+        cout << "\n========== Login ==========" << endl;
         cout << "Masukan Username : ";
         cin >> inp_user;
 

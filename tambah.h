@@ -19,9 +19,4 @@ void tambah_reservasi(int no_reservasi, string nama, int jumlah_orang, string ta
 void lihat_reservasi();
 void daftar_pilihan();
 
-extern reservasi* head;
-extern reservasi* tail;
-
-
-
 #endif

@@ -3,13 +3,13 @@
 #include <iostream>
 #include "log.h"
 #include "tambah.h"
-#include "hapus.h"
+// #include "hapus.h"
 
 using namespace std;
 
 void daftar_pilihan () 
 {
-    cout<<endl
+    cout
         << "Pilihan Menu" << endl
         << "1. Daftar Reservasi" << endl
         << "2. Tambah Reservasi" << endl
@@ -17,8 +17,6 @@ void daftar_pilihan ()
         << "4. Keluar"
         << endl;
 }
-
-
 
 int main () {
 
@@ -56,24 +54,28 @@ int main () {
                 int jumlah_orang;
                 string tanggal;
                 string jam;
-                head = NULL;
-
-                cout << "==========================" << endl;
-                cout << "     Selamat Datang" << endl;
-                cout << "Sistem Reservasi Restoran" << endl;
-                cout << "==========================" << endl;
-                cout << endl;
 
                 cout << "========Buat Reservasi========" << endl;
-                cout << "Masukkan Nama: "; getline(cin, nama); cin.ignore(); 
-                cout << "Masukkan Jumlah Orang: "; cin >> jumlah_orang; 
-                cout << "Masukkan Tanggal (YYYY-MM-DD): "; getline(cin, tanggal);
-                cout << "Masukkan Jam (HH:MM): "; getline(cin, jam);
+                cout << "Masukkan Nama: "; 
+                cin.ignore(); 
+                getline(cin, nama);
+
+                cout << "Masukkan Jumlah Orang: "; 
+                cin >> jumlah_orang; 
+                cin.ignore(); 
+
+                cout << "Masukkan Tanggal (YYYY-MM-DD): "; 
+                getline(cin, tanggal);
+
+                cout << "Masukkan Jam (HH:MM): "; 
+                getline(cin, jam);
 
                 tambah_reservasi(no_reservasi, nama, jumlah_orang, tanggal, jam);
 
                 cout << "Daftar Reservasi:\n";
                 lihat_reservasi();
+
+                cout << "\nKembali ke menu utama";
 
                 cout <<endl;
                 daftar_pilihan();
@@ -96,7 +98,7 @@ int main () {
 
                 else 
                 {
-                    resv_hapus();
+                    // resv_hapus();
                     cout << "3 pass" << endl;
                     daftar_pilihan();
                     cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;

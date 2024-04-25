@@ -8,9 +8,8 @@
 using namespace std;
 namespace fs = filesystem;
 
-
-reservasi *head = nullptr;
-reservasi *tail = nullptr;
+reservasi *head = NULL;
+reservasi *tail = NULL;
 
 bool fileExists(const string& filename) {
     return fs::exists(filename);
@@ -25,32 +24,32 @@ bool isEmpty()
     return false;   
 }
 
-bool isFull(string tanggal, string jam)
+bool isFull(string input_tanggal, string input_jam)
 {
     ifstream file("reservasi.csv");
     string line;
 
+    // Mengabaikan baris header
+    getline(file, line);
+
     while (getline(file, line))
     {
         stringstream ss(line);
-        string nama, tgl, jamm;
-        int jumlah;
+        string no, nama, jumlah, tanggal, jam;
 
+        getline(ss, no, ','); 
         getline(ss, nama, ',');
-        ss >> jumlah;
-        ss.ignore();
-        getline(ss, tgl, ',');
-        getline(ss, jamm, ',');
+        getline(ss, jumlah, ','); 
+        getline(ss, tanggal, ',');
+        getline(ss, jam, ',');
 
-        if (tgl == tanggal && jamm == jam)
+        if (input_tanggal == tanggal && input_jam == jam)
         {
-            file.close();
-            return true; 
+            return true;
         }
     }
 
-    file.close();
-    return false; 
+    return false;
 }
 
 void buat_file(int no_reservasi, string nama, int jumlah_orang, string tanggal, string jam)
@@ -59,7 +58,7 @@ void buat_file(int no_reservasi, string nama, int jumlah_orang, string tanggal, 
     if (!fileExists("reservasi.csv")) {
         ofstream createFile("reservasi.csv");
         if (createFile.is_open()) {
-            createFile << "No,Nama,Jumlah Orang,Tanggal,Jam\n";
+            createFile << "no,nama,jumlah orang,tanggal,jam\n";
             createFile.close();
         } else {
             cout << "File gagal dibuat.\n";
@@ -80,7 +79,7 @@ void tambah_reservasi(int no_reservasi, string nama, int jumlah_orang, string ta
 {
     if (isFull(tanggal, jam))
     {
-        cout << "Maaf, meja pada tanggal " << tanggal << " jam " << jam << " sudah terisi.\n";
+        cout << "\nMaaf, meja pada tanggal " << tanggal << " jam " << jam << " sudah terisi.\n";
         return;
     }
 
@@ -105,6 +104,7 @@ void tambah_reservasi(int no_reservasi, string nama, int jumlah_orang, string ta
 
     buat_file(no_reservasi, nama, jumlah_orang, tanggal, jam);
 
+    cout << "\nReservasi berhasil ditambahkan.\n";
 }
 
 void lihat_reservasi()
@@ -119,30 +119,32 @@ void lihat_reservasi()
     }
 }
 
-void t_resv()
-{
-    int no_reservasi = 1;
-    string nama;
-    int jumlah_orang;
-    string tanggal;
-    string jam;
-    head = NULL;
 
-    cout << "==========================" << endl;
-    cout << "     Selamat Datang" << endl;
-    cout << "Sistem Reservasi Restoran" << endl;
-    cout << "==========================" << endl;
-    cout << endl;
 
-    cout << "========Buat Reservasi========" << endl;
-    cout << "Masukkan Nama: "; getline(cin, nama);
-    cout << "Masukkan Jumlah Orang: "; cin >> jumlah_orang; cin.ignore(); 
-    cout << "Masukkan Tanggal (YYYY-MM-DD): "; getline(cin, tanggal);
-    cout << "Masukkan Jam (HH:MM): "; getline(cin, jam);
+// void t_resv()
+// {
+//     int no_reservasi = 1;
+//     string nama;
+//     int jumlah_orang;
+//     string tanggal;
+//     string jam;
+//     head = NULL;
 
-    tambah_reservasi(no_reservasi, nama, jumlah_orang, tanggal, jam);
+//     cout << "==========================" << endl;
+//     cout << "     Selamat Datang" << endl;
+//     cout << "Sistem Reservasi Restoran" << endl;
+//     cout << "==========================" << endl;
+//     cout << endl;
 
-    cout << "Daftar Reservasi:\n";
-    lihat_reservasi();
+//     cout << "\n========Buat Reservasi========" << endl;
+//     cout << "Masukkan Nama: "; getline(cin, nama);
+//     cout << "Masukkan Jumlah Orang: "; cin >> jumlah_orang; cin.ignore(); 
+//     cout << "Masukkan Tanggal (YYYY-MM-DD): "; getline(cin, tanggal);
+//     cout << "Masukkan Jam (HH:MM): "; getline(cin, jam);
 
-}
+//     tambah_reservasi(no_reservasi, nama, jumlah_orang, tanggal, jam);
+
+//     cout << "Daftar Reservasi:\n";
+//     lihat_reservasi();
+
+// }

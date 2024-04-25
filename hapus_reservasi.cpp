@@ -1,51 +1,43 @@
-#include <iostream>
-#include <string>
-#include "hapus.h"
-#include "tambah.h"
+// #include <iostream>
+// #include <string>
+// #include "hapus.h"
+// #include "tambah.h"
 
-using namespace std;
+// using namespace std;
 
-// Hapus reservasi
-void hapus_reservasi(int no_reservasi) {
-    reservasi *current = head;
+// // Hapus reservasi
+// void hapus_reservasi(int nomor_reservasi) {
+//     reservasi *current = Null;
+//     reservasi *prev = NULL;
 
-    while (current != NULL) {
-        if (current->no_reservasi == no_reservasi) {
-            if (current == head && current == tail) {
-                // Jika ini adalah satu-satunya node dalam linked list
-                head = NULL;
-                tail = NULL;
-            } else if (current == head) {
-                // Jika ini adalah node pertama dalam linked list
-                head = current->next;
-                head->prev = NULL;
-            } else if (current == tail) {
-                // Jika ini adalah node terakhir dalam linked list
-                tail = current->prev;
-                tail->next = NULL;
-            } else {
-                // Jika ini adalah node di tengah linked list
-                current->prev->next = current->next;
-                current->next->prev = current->prev;
-            }
-            delete current;
-            cout << "Reservasi dengan nomor " << no_reservasi << " telah dihapus.\n";
-            return;
-        }
-        current = current->next;
-    }
-    cout << "Reservasi dengan nomor " << no_reservasi << " tidak ditemukan.\n";
-}
+//     int i = 1;
+//     while (current != NULL) {
+//         if (i == nomor_reservasi) {
+//             if (prev != NULL) {
+//                 prev->next = current->next;
+//             } else {
+//                 head = current->next;
+//             }
+//             delete current;
+//             cout << "Reservasi dengan nomor " << nomor_reservasi << " telah dihapus.\n";
+//             return;
+//         }
+//         prev = current;
+//         current = current->next;
+//         i++;
+//     }
+//     cout << "Reservasi dengan nomor " << nomor_reservasi << " tidak ditemukan.\n";
+// }
 
-void resv_hapus() // diganti jadi void untuk dipanggil di header
-{
-    int pilihan;
-    cout << "Masukkan nomor reservasi yang ingin dihapus: ";
-    cin >> pilihan;
-    if (pilihan != 0)
-    {
-        hapus_reservasi(pilihan);
-        cout << "Reservasi setelah dihapus:\n";
-    }
+// void resv_hapus() // diganti jadi void untuk dipanggil di header
+// {
+//     int pilihan;
+//     cout << "Masukkan nomor reservasi yang ingin dihapus: ";
+//     cin >> pilihan;
+//     if (pilihan != 0)
+//     {
+//         hapus_reservasi(pilihan);
+//         cout << "Reservasi setelah dihapus:\n";
+//     }
 
-}
+// }
