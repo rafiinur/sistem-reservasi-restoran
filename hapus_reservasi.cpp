@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "hapus.h"
 
 using namespace std;
 
@@ -49,7 +50,7 @@ void hapus_reservasi(int no_reservasi) {
     cout << "Reservasi dengan nomor " << no_reservasi << " tidak ditemukan.\n";
 }
 
-int main()
+void resv_hapus() // diganti jadi void untuk dipanggil di header
 {
     int pilihan;
     cout << "Masukkan nomor reservasi yang ingin dihapus: ";
@@ -60,5 +61,4 @@ int main()
         cout << "Reservasi setelah dihapus:\n";
     }
 
-    return 0;
 }
