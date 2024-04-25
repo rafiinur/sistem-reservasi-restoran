@@ -9,13 +9,17 @@ using namespace std;
 
 void daftar_pilihan () 
 {
-    cout
-        << "Pilihan Menu" << endl
-        << "1. Daftar Reservasi" << endl
-        << "2. Tambah Reservasi" << endl
-        << "3. Hapus Reservasi"<< endl
-        << "4. Keluar"
-        << endl;
+    string menu[] = {
+        "Daftar Reservasi",
+        "Tambah Reservasi",
+        "Hapus Reservasi",
+        "Keluar"
+    };
+
+    cout << "Pilihan Menu" << endl;
+    for (int i = 0; i < sizeof(menu) / sizeof(menu[0]); ++i) {
+        cout << i + 1 << ". " << menu[i] << endl;
+    }
 }
 
 int main () {
