@@ -3,6 +3,7 @@
 #include <iostream>
 #include "log.h"
 #include "tambah.h"
+#include "hapus.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ void daftar_pilihan ()
         << "4. Keluar"
         << endl;
 }
+
 
 
 int main () {
@@ -49,10 +51,33 @@ int main () {
 
             else if (pilih == 2)
             {
-                tambah_resv();
-                // cout << endl;
-                // daftar_pilihan();
-                // cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
+                int no_reservasi = 1;
+                string nama;
+                int jumlah_orang;
+                string tanggal;
+                string jam;
+                head = NULL;
+
+                cout << "==========================" << endl;
+                cout << "     Selamat Datang" << endl;
+                cout << "Sistem Reservasi Restoran" << endl;
+                cout << "==========================" << endl;
+                cout << endl;
+
+                cout << "========Buat Reservasi========" << endl;
+                cout << "Masukkan Nama: "; getline(cin, nama); cin.ignore(); 
+                cout << "Masukkan Jumlah Orang: "; cin >> jumlah_orang; 
+                cout << "Masukkan Tanggal (YYYY-MM-DD): "; getline(cin, tanggal);
+                cout << "Masukkan Jam (HH:MM): "; getline(cin, jam);
+
+                tambah_reservasi(no_reservasi, nama, jumlah_orang, tanggal, jam);
+
+                cout << "Daftar Reservasi:\n";
+                lihat_reservasi();
+
+                cout <<endl;
+                daftar_pilihan();
+                cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
             }
 
             else if (pilih == 3)
@@ -71,6 +96,7 @@ int main () {
 
                 else 
                 {
+                    resv_hapus();
                     cout << "3 pass" << endl;
                     daftar_pilihan();
                     cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;

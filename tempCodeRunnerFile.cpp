@@ -1,4 +1,16 @@
-< user <<endl;
-            cout << "Input N \t" << in_user << endl;
-            cout << "Pass \t \t" << pswd << endl;
-            cout << "Input P \t" << in_pswd << endl;
+#include <iostream>
+#include "log.h"
+#include "tambah.h"
+
+using namespace std;
+
+void daftar_pilihan () 
+{
+    cout<<endl
+        << "Pilihan Menu" << endl
+        << "1. Daftar Reservasi" << endl
+        << "2. Tambah Reservasi" << endl
+        << "3. Hapus Reservasi"<< endl
+        << "4. Keluar"
+        << endl;
+}

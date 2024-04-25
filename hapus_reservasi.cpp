@@ -1,22 +1,9 @@
 #include <iostream>
 #include <string>
 #include "hapus.h"
+#include "tambah.h"
 
 using namespace std;
-
-struct reservasi
-{
-    int no_reservasi;
-    string nama;
-    int jumlah_orang;
-    string tanggal;
-    string jam;
-    reservasi *next;
-    reservasi *prev;
-};
-
-reservasi *head = NULL;
-reservasi *tail = NULL;
 
 // Hapus reservasi
 void hapus_reservasi(int no_reservasi) {

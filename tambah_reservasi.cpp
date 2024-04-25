@@ -9,18 +9,8 @@ using namespace std;
 namespace fs = filesystem;
 
 
-struct reservasi
-{
-    int no_reservasi;
-    string nama;
-    int jumlah_orang;
-    string tanggal;
-    string jam;
-    reservasi *next;
-};
-
-reservasi *head;
-reservasi *tail;
+reservasi *head = nullptr;
+reservasi *tail = nullptr;
 
 bool fileExists(const string& filename) {
     return fs::exists(filename);
@@ -129,7 +119,7 @@ void lihat_reservasi()
     }
 }
 
-void main()
+void t_resv()
 {
     int no_reservasi = 1;
     string nama;

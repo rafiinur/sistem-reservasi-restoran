@@ -4,6 +4,6 @@
 #include<string>
 using namespace std;
 
-void resv_hapus()
+void resv_hapus();
 
 #endif

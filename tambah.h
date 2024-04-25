@@ -4,7 +4,24 @@
 #include<string>
 using namespace std;
 
-void tambah_resv();
+struct reservasi
+{
+    int no_reservasi;
+    string nama;
+    int jumlah_orang;
+    string tanggal;
+    string jam;
+    reservasi *next;
+    reservasi *prev;
+};
+
+void tambah_reservasi(int no_reservasi, string nama, int jumlah_orang, string tanggal, string jam);
+void lihat_reservasi();
+void daftar_pilihan();
+
+extern reservasi* head;
+extern reservasi* tail;
+
 
 
 #endif
