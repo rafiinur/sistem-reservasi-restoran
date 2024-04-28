@@ -1,16 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "log.h"
+#include "header/auth.h"
 using namespace std;
 
 bool check = false;
 string role;
 
 
-void log(string in_user, string in_pswd)
+void auth(string in_user, string in_pswd)
 {
-    ifstream file("log.csv");
+    ifstream file("data/log.csv");
 
     if (file.is_open())
     {
@@ -50,9 +50,9 @@ void log(string in_user, string in_pswd)
 }
 
 
-void siup (string s_user, string s_pswd)
+void signup (string s_user, string s_pswd)
 {
-    ofstream file("log.csv", ios::app);
+    ofstream file("data/log.csv", ios::app);
 
     if (!file.is_open()) {
         cout << "Gagal membuka file" << endl;
@@ -93,7 +93,7 @@ void login()
         cout << "Masukan Password : ";
         cin >> inp_pswd;
     
-        log(inp_user, inp_pswd);
+        auth(inp_user, inp_pswd);
 
     }
     
@@ -106,7 +106,7 @@ void login()
         cout << "Masukan Password : ";
         cin >> inp_pswd;
 
-        siup(inp_user, inp_pswd);
+        signup(inp_user, inp_pswd);
     }
     
 }

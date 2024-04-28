@@ -1,43 +1,28 @@
-// #include <iostream>
-// #include <string>
-// #include "hapus.h"
-// #include "tambah.h"
+#include <iostream>
+#include <string>
+#include "header/struct.h"
+#include "header/hapus_reservasi.h"
 
-// using namespace std;
+void removeReservation(Node *&head, int no_reservasi) {
+    Node *current = head;
+    Node *prev = nullptr;
 
-// // Hapus reservasi
-// void hapus_reservasi(int nomor_reservasi) {
-//     reservasi *current = Null;
-//     reservasi *prev = NULL;
+    while (current != nullptr) {
+        if (current->data->no_reservasi == no_reservasi) {
+            if (prev != nullptr) {
+                prev->next = current->next;
+            } else {
+                head = current->next;
+            }
+            delete current->data; // Hapus memori yang dialokasikan untuk data
+            delete current;
+            return;
 
-//     int i = 1;
-//     while (current != NULL) {
-//         if (i == nomor_reservasi) {
-//             if (prev != NULL) {
-//                 prev->next = current->next;
-//             } else {
-//                 head = current->next;
-//             }
-//             delete current;
-//             cout << "Reservasi dengan nomor " << nomor_reservasi << " telah dihapus.\n";
-//             return;
-//         }
-//         prev = current;
-//         current = current->next;
-//         i++;
-//     }
-//     cout << "Reservasi dengan nomor " << nomor_reservasi << " tidak ditemukan.\n";
-// }
+            cout << "Reservasi berhasil dihapus." << endl;
+        }
+        prev = current;
+        current = current->next;
+    }
 
-// void resv_hapus() // diganti jadi void untuk dipanggil di header
-// {
-//     int pilihan;
-//     cout << "Masukkan nomor reservasi yang ingin dihapus: ";
-//     cin >> pilihan;
-//     if (pilihan != 0)
-//     {
-//         hapus_reservasi(pilihan);
-//         cout << "Reservasi setelah dihapus:\n";
-//     }
-
-// }
+    cout << "Reservasi tidak ditemukan." << endl;
+}
