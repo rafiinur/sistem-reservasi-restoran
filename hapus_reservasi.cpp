@@ -1,10 +1,9 @@
 #include <iostream>
+#include <string>
+#include "hapus.h"
+#include "tambah.h"
 
-struct reservasi {
-    int no_reservasi;
-    reservasi* next;
-    reservasi* prev;
-};
+using namespace std;
 
 reservasi* head = NULL;
 reservasi* tail = NULL;
