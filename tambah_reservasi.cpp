@@ -21,6 +21,7 @@ void createReservation()
     string tanggal;
     string jam;
 
+    cout << endl;
     cout << "========Buat Reservasi========" << endl;
     cout << "Masukkan Nama: "; 
     cin.ignore(); 
@@ -37,5 +38,8 @@ void createReservation()
     getline(cin, jam);
 
     addReservation(reservasi, {no_reservasi, nama, jumlah_orang, tanggal, jam});
-    cout << "Reservasi berhasil dibuat!" << endl;
+
+    cout << endl;
+    cout << "*** Reservasi berhasil dibuat ***" << endl;
+    cout << endl;
 }

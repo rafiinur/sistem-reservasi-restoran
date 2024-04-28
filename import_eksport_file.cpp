@@ -29,12 +29,14 @@ void importFromFile(Node *&head, const string &filename) {
     int jumlah_orang;
     string tanggal;
     string jam;
+
     while (file >> no_reservasi >> nama >> jumlah_orang >> tanggal >> jam) {
         addReservation(head, {no_reservasi, nama, jumlah_orang, tanggal, jam});
     }
 
     file.close();
-    cout << "Data reservasi berhasil dimuat dari file." << endl;
+    cout << endl;
+    cout << "*** Data reservasi berhasil dimuat dari file ***" << endl;
 }
 
 void exportToFile(Node *head, const string &filename) {
@@ -51,5 +53,6 @@ void exportToFile(Node *head, const string &filename) {
     }
 
     file.close();
-    cout << "Data reservasi berhasil disimpan ke file." << endl;
+    cout << endl;
+    cout << "*** Data reservasi berhasil disimpan ke file ***" << endl;
 }

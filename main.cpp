@@ -33,6 +33,7 @@ int main () {
     if (check) {
         int pilih;
 
+        cout << endl;
         cout << "==========================" << endl;
         cout << "      Selamat Datang      " << endl;
         cout << "Sistem Reservasi Restoran" << endl;
@@ -42,17 +43,20 @@ int main () {
         showMenu();
 
         cout << "Pilihan Anda (Pilih Nomor) : "; cin >> pilih;
+        cout << endl;
 
         while (pilih != 6) {
             if (pilih == 1) {
                 displayReservations(reservasi);
                 showMenu();
                 cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
+                cout << endl;
             }
             else if (pilih == 2) {         
                 createReservation();   
                 showMenu();
                 cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
+                cout << endl;
             }
             else if (pilih == 3) {
                 if (role != "admin") {
@@ -62,6 +66,7 @@ int main () {
                     cout << "====================================" << endl;
                     showMenu();
                     cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
+                    cout << endl;
                 }
                 else {
                     int no_reservasi;
@@ -73,22 +78,26 @@ int main () {
 
                     showMenu();
                     cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
+                    cout << endl;
                 }
             }
             else if (pilih == 4) {
                 exportToFile(reservasi, "reservasi.csv");
                 showMenu();
                 cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
+                cout << endl;
             }
             else if (pilih == 5) {
                 importFromFile(reservasi, "reservasi.csv");
                 showMenu();
                 cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
+                cout << endl;
             }
             else {
                 cout << "Pilihan tidak valid" << endl;
                 showMenu();
                 cout << "Silahkan pilih kembali nomor Anda : "; cin >> pilih;
+                cout << endl;
             }
         }
         cout << "Terima Kasih telah menggunakan sistem ini";

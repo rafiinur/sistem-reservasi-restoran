@@ -66,7 +66,6 @@ void signup (string s_user, string s_pswd)
     login();
 }
 
-
 void login() 
 {
     string inp_user;
