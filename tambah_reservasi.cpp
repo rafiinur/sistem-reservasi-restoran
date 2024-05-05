@@ -51,9 +51,9 @@ void time_check(int no_reservasi, string nama, int jumlah_orang, string tanggal,
                 }
                 else
                 {
-                    if (hour >= 21 && hour < 5) // Toko tutup pada jam 21 dan buka jam 6
+                    if (jm - hour <= 2) // Reservasi hanya bisa dilakukan 2 jam sebelumnya
                     {
-                        cout << "Sistem reservasi sudah tutup";
+                        cout << "Jam Reservasi terlalu dekat";
                     }
                     else
                     {
